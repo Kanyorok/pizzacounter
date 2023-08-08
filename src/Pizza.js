@@ -16,16 +16,35 @@ const Button = {
 };
 
 class Pizza extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+    };
+  }
+
+  takeOrder() {
+    this.setState({
+      count: this.state.count + 1,
+    });
+  }
+
+  cancelOrder() {
+    this.setState({
+      count: this.state.count - 1,
+    });
+  }
+
   render() {
     return (
       <div>
-        <img src={pizza} width="200" alt='Pizza Logo'/>
+        <img src={pizza} width="200" alt="Pizza Logo" />
         <h1>Pizza Order Counter</h1>
-        <h1 style={Counter}>0</h1>
-        <button type='button' style={Button}>Take Order</button>
+        <h1 style={Counter}>{this.state.count}</h1>
+        <button type="button" onClick={() => this.takeOrder()} style={Button}>Take Order</button>
         <br />
         <br />
-        <button type='button' style={Button}>Cancel Order</button>
+        <button type="button" onClick={() => this.cancelOrder()} style={Button}>Cancel Order</button>
       </div>
     );
   }
